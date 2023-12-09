@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import ToggleButton from "./ToggleButton";
-import { doc, getDoc, setDoc } from "firebase/firestore";
+import { doc, onSnapshot, setDoc } from "firebase/firestore";
 import { db } from "../firebase";
 
 interface Props {
@@ -15,21 +15,25 @@ const Card = ({ group }: Props) => {
     await setDoc(groupRef, { status: value }, { merge: true });
     console.log("Set data");
   }
-  async function fetchData() {
-    const groupRef = doc(db, "groups", group);
-    const docSnap = await getDoc(groupRef);
-    if (docSnap.exists()) {
-      console.log("Document data:", docSnap.data().status);
-      setCalled(docSnap.data().status);
-    } else {
-      // docSnap.data() will be undefined in this case
-      console.log("No such document! WIll Create");
-      setData(isCalled);
-    }
-    return docSnap;
-  }
 
   useEffect(() => {
+    const fetchData = async () => {
+      const groupRef = doc(db, "groups", group);
+      const unSub = onSnapshot(groupRef, (doc) => {
+        if (doc.exists()) {
+          setCalled(doc.data().status);
+        } else {
+          // docSnap.data() will be undefined in this case
+          console.log("No such document! Will Create");
+          setData(isCalled);
+        }
+      });
+      return () => {
+        // Unsubscribe when the component unmounts
+        console.log("Unsubscribing");
+        unSub();
+      };
+    };
     fetchData();
   }, []);
 
