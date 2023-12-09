@@ -8,8 +8,8 @@ const CardGrid = () => {
       <div className="container text-center">
         <div className="row">
           {classes.map((item) => (
-            <div className="col">
-              <Card group={item} />
+            <div className="col" key={item +"col"}>
+              <Card group={item} key={item+"card"}/>
             </div>
           ))}
         </div>

@@ -1,27 +1,35 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import ToggleButton from "./ToggleButton";
 import { getDatabase, ref, set, onValue } from "firebase/database";
+import firebaseConfig from "../../firebaseConfig";
+import { initializeApp } from "firebase/app";
 
 interface Props {
   group: string;
 }
 
 const Card = ({ group }: Props) => {
+  console.log("Tried to initialize");
+  initializeApp(firebaseConfig);
+
   const [isCalled, setCalled] = useState(false);
 
   function writeClassState(referance: string, value: boolean) {
+    console.log("Write function ran");
     const database = getDatabase();
     set(ref(database, referance), value);
   }
 
   const database = getDatabase();
   onValue(ref(database, group), (snapshot) => {
+    console.log(group + " value changed.");
     setCalled(snapshot.val());
   });
 
   const handleClick = () => {
+    console.log("clicked!");
     writeClassState(group, !isCalled);
-    setCalled(!isCalled);
+    //setCalled(!isCalled);
   };
   return (
     <div className="card">
