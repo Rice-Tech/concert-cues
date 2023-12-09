@@ -24,7 +24,7 @@ const Card = ({ group }: Props) => {
     } else {
       // docSnap.data() will be undefined in this case
       console.log("No such document! WIll Create");
-      setData();
+      setData(isCalled);
     }
     return docSnap;
   }
