@@ -27,4 +27,4 @@ dist-ssr
 .firebase/
 .firebaserc
 .github/
-firebaseConfig.tsx
+src/firebase.tsx
