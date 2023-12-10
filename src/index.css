@@ -7,7 +7,7 @@ body {
   background-color: #cccccc;
   background-size: cover;
  }
- h1{
+ h1,h3{
   color:white;
   text-align: center;
  }
