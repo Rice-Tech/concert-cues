@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import ToggleButton from "./ToggleButton";
 import { doc, onSnapshot, setDoc } from "firebase/firestore";
 import { db } from "../firebase";
+import AudioPlayer from "./AudioPlayer";
 
 interface Props {
   group: string;
@@ -59,6 +60,7 @@ const Card = ({ group }: Props) => {
           trueLabel="Clear"
           onClick={handleClick}
         />
+        <AudioPlayer isPlaying={isCalled} />
       </div>
     </div>
   );
