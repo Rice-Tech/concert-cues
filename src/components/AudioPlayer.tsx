@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import { useEffect, useRef } from "react";
 
 interface Props {
   isPlaying: boolean;
@@ -6,11 +6,12 @@ interface Props {
 const AudioPlayer = ({ isPlaying }: Props) => {
   const audioRef = useRef(null);
   useEffect(() => {
-    if (audioRef) {
+    if (audioRef?.current) {
+      const audioElement = audioRef.current as HTMLAudioElement;
       if (isPlaying) {
-        audioRef.current.play();
+        audioElement.play();
       } else {
-        audioRef.current.pause();
+        audioElement.pause();
       }
     }
   }, [isPlaying]);
