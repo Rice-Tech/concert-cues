@@ -5,65 +5,65 @@ import { db } from "../firebase";
 import AudioPlayer from "./AudioPlayer";
 
 interface Props {
-  group: string;
+    group: string;
 }
 
 const Card = ({ group }: Props) => {
-  const [isCalled, setCalled] = useState(false);
+    const [isCalled, setCalled] = useState(false);
 
-  async function setData(value: boolean) {
-    const groupRef = doc(db, "groups", group);
-    await setDoc(groupRef, { status: value }, { merge: true });
-    console.log("Set data");
-  }
+    async function setData(value: boolean) {
+        const groupRef = doc(db, "groups", group);
+        await setDoc(groupRef, { status: value }, { merge: true });
+        console.log("Set data");
+    }
 
-  useEffect(() => {
-    const fetchData = async () => {
-      const groupRef = doc(db, "groups", group);
-      const unSub = onSnapshot(groupRef, (doc) => {
-        if (doc.exists()) {
-          setCalled(doc.data().status);
-        } else {
-          // docSnap.data() will be undefined in this case
-          console.log("No such document! Will Create");
-          setData(isCalled);
-        }
-      });
-      return () => {
-        // Unsubscribe when the component unmounts
-        console.log("Unsubscribing");
-        unSub();
-      };
-    };
-    fetchData();
-  }, []);
+    useEffect(() => {
+        const fetchData = async () => {
+            const groupRef = doc(db, "groups", group);
+            const unSub = onSnapshot(groupRef, (doc) => {
+                if (doc.exists()) {
+                    setCalled(doc.data().status);
+                } else {
+                    // docSnap.data() will be undefined in this case
+                    console.log("No such document! Will Create");
+                    setData(isCalled);
+                }
+            });
+            return () => {
+                // Unsubscribe when the component unmounts
+                console.log("Unsubscribing");
+                unSub();
+            };
+        };
+        fetchData();
+    }, [group]);
 
-  function handleClick() {
-    setData(!isCalled);
-    setCalled(!isCalled);
-  }
-  return (
-    <div className="card">
-      <div
-        className={
-          isCalled
-            ? "card-header bg-danger text-light"
-            : "card-header bg-secondary-subtle"
-        }
-      >
-        {group}
-      </div>
-      <div className="card-body">
-        <ToggleButton
-          isToggled={isCalled}
-          falseLabel="Call Class"
-          trueLabel="Clear"
-          onClick={handleClick}
-        />
-        <AudioPlayer isPlaying={isCalled} />
-      </div>
-    </div>
-  );
+    function handleClick() {
+        setData(!isCalled);
+        setCalled(!isCalled);
+    }
+    return (
+        <div className="card">
+            <div
+                className={
+                    isCalled
+                        ? "card-header bg-danger text-light"
+                        : "card-header bg-secondary-subtle"
+                }
+            >
+                {group}
+            </div>
+            <div className="card-body">
+                <ToggleButton
+                    isToggled={isCalled}
+                    falseLabel="Call Class"
+                    trueLabel="Clear"
+                    onClick={handleClick}
+                />
+                <AudioPlayer isPlaying={isCalled} />
+            </div>
+        </div>
+    );
 };
 
 export default Card;
