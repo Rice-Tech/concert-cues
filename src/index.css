@@ -2,3 +2,12 @@
   max-width: 20vw;
   min-width: 100px;
 }
+body {
+  background-image: url("https://lh3.googleusercontent.com/drive-viewer/AK7aPaD9jeXa6-E5F5CUo1AzjY8dOpvJM9Tk87qJYft5qTTSN4D2MGAsdDtE4zfwiNdbpePSJAAmjsDNiTbxOE_eOyMfTe8BxA=s1600");
+  background-color: #cccccc;
+  background-size: cover;
+ }
+ h1{
+  color:white;
+  text-align: center;
+ }

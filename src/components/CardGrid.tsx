@@ -1,7 +1,7 @@
 import Card from "./Card";
 
 const CardGrid = () => {
-  const classes = ["1st", "2nd", "3rd", "4th"];
+  const classes = ["K","1st", "2nd", "3rd", "4th","5th"];
 
   return (
     <>
