@@ -1,6 +1,7 @@
 import { ChangeEvent, useState } from "react";
 import CardGrid from "./CardGrid";
-import Card from "./Card";
+
+import ClassView from "./ClassView";
 
 const RoleSelect = () => {
     const [selectedRole, setSelectedRole] = useState("");
@@ -30,7 +31,7 @@ const RoleSelect = () => {
                 selectedRole === "Caller" ? (
                     <CardGrid />
                 ) : (
-                    <Card group={selectedRole} />
+                    <ClassView group={selectedRole} isClassView={true} />
                 )
             ) : (
                 <></>

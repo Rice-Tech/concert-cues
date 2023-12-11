@@ -3,12 +3,14 @@ import ToggleButton from "./ToggleButton";
 import { doc, onSnapshot, setDoc } from "firebase/firestore";
 import { db } from "../firebase";
 import AudioPlayer from "./AudioPlayer";
+import YouTube from "./YouTube";
 
 interface Props {
     group: string;
+    isClassView: boolean;
 }
 
-const Card = ({ group }: Props) => {
+const Card = ({ group, isClassView }: Props) => {
     const [isCalled, setCalled] = useState(false);
 
     async function setData(value: boolean) {
@@ -43,7 +45,10 @@ const Card = ({ group }: Props) => {
         setCalled(!isCalled);
     }
     return (
-        <div className="card">
+        <div
+            className="card"
+            style={isClassView ? { maxWidth: "70vw" } : { maxWidth: "100px" }}
+        >
             <div
                 className={
                     isCalled
@@ -54,13 +59,26 @@ const Card = ({ group }: Props) => {
                 {group}
             </div>
             <div className="card-body">
-                <ToggleButton
-                    isToggled={isCalled}
-                    falseLabel="Call Class"
-                    trueLabel="Clear"
-                    onClick={handleClick}
-                />
-                <AudioPlayer isPlaying={isCalled} />
+                {isCalled || !isClassView ? (
+                    <ToggleButton
+                        isToggled={isCalled}
+                        falseLabel="Call Class"
+                        trueLabel={isClassView ? "On our way!" : "Clear"}
+                        onClick={handleClick}
+                    />
+                ) : (
+                    <h2>
+                        The video will disappear when your class is called to
+                        sing.
+                    </h2>
+                )}
+                {isClassView && <AudioPlayer isPlaying={isCalled} />}
+                {isClassView &&
+                    (isCalled ? (
+                        <h2>Time to sing! I know you will sound amazing!</h2>
+                    ) : (
+                        <YouTube />
+                    ))}
             </div>
         </div>
     );
