@@ -18,6 +18,9 @@ body {
   border-radius: 40px;
   display: block;
   margin: auto;
+  width:80%;
+  aspect-ratio: 560/315;
+
  }
  .row{
   align-items: center;
