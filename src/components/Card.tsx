@@ -56,7 +56,7 @@ const Card = ({ group, isClassView }: Props) => {
                         : "card-header bg-secondary-subtle"
                 }
             >
-                {group}
+                <h2>{group}</h2>
             </div>
             <div className="card-body">
                 {isCalled || !isClassView ? (
@@ -67,15 +67,23 @@ const Card = ({ group, isClassView }: Props) => {
                         onClick={handleClick}
                     />
                 ) : (
-                    <h2>
-                        The video will disappear when your class is called to
-                        sing.
-                    </h2>
+                    <>
+                        <h4>
+                            Enjoy one of these videos while waiting to sing.
+                        </h4>
+                        <p>
+                            It will dissappear immediately when you are called.
+                        </p>
+                    </>
                 )}
                 {isClassView && <AudioPlayer isPlaying={isCalled} />}
                 {isClassView &&
                     (isCalled ? (
-                        <h2>Time to sing! I know you will sound amazing!</h2>
+                        <>
+                            <h2>Time to sing!</h2>{" "}
+                            <h5>I know you will sound amazing!</h5>
+                            <img src="https://media1.tenor.com/m/3OIukaUTpU8AAAAC/singing-americas-got-talent.gif" />
+                        </>
                     ) : (
                         <VideoService />
                     ))}

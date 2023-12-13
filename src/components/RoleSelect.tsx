@@ -6,13 +6,12 @@ import ClassView from "./ClassView";
 const RoleSelect = () => {
     const [selectedRole, setSelectedRole] = useState("");
 
-    const groups = ["K", "1st", "2nd", "3rd", "4th", "5th"];
+    const groups = ["K", "1st", "2nd", "3rd", "4th", "5th", "Choir", "Glee"];
     function handleSelectChange(event: ChangeEvent<HTMLSelectElement>) {
         setSelectedRole(event.target.value);
     }
     return (
         <>
-            <h3>{selectedRole}</h3>
             <select
                 className="form-select form-select-lg mb-3"
                 aria-label="Large select example"
