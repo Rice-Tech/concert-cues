@@ -20,7 +20,7 @@ body {
   margin: auto;
   width:80%;
   aspect-ratio: 560/315;
-
+  box-shadow: 2px 2px 10px grey;
  }
  .row{
   align-items: center;
@@ -29,4 +29,19 @@ body {
 select{
   max-width: 300px;
   margin: auto;
+}
+.videoThumbnail{
+  width: 150px;
+  transition: width 0.3s ease;
+  border-radius: 2rem;
+  box-shadow: 2px 2px 10px grey;
+}
+.videoThumbnail:hover{
+  width: 200px;
+}
+#videoOptionsContainer{
+  height: 250px;
+  display:flex;
+  align-items: center;
+  justify-content: space-evenly;
 }

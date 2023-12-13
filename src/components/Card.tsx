@@ -3,7 +3,7 @@ import ToggleButton from "./ToggleButton";
 import { doc, onSnapshot, setDoc } from "firebase/firestore";
 import { db } from "../firebase";
 import AudioPlayer from "./AudioPlayer";
-import YouTube from "./YouTube";
+import VideoService from "./VideoService";
 
 interface Props {
     group: string;
@@ -77,7 +77,7 @@ const Card = ({ group, isClassView }: Props) => {
                     (isCalled ? (
                         <h2>Time to sing! I know you will sound amazing!</h2>
                     ) : (
-                        <YouTube />
+                        <VideoService />
                     ))}
             </div>
         </div>
