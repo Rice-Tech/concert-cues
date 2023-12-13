@@ -6,7 +6,7 @@ import ClassView from "./ClassView";
 const RoleSelect = () => {
     const [selectedRole, setSelectedRole] = useState("");
 
-    const groups = ["K", "1st", "2nd", "3rd", "4th", "5th", "Choir", "Glee"];
+    const groups = ["K-1", "K-2", "1-1", "1-2", "2-1", "2-2", "3-1", "3-2", "4-1", "4-2", "5-1", "5-2", "Choir", "Glee"];
     function handleSelectChange(event: ChangeEvent<HTMLSelectElement>) {
         setSelectedRole(event.target.value);
     }
@@ -28,7 +28,7 @@ const RoleSelect = () => {
             </select>
             {selectedRole ? (
                 selectedRole === "Caller" ? (
-                    <CardGrid />
+                    <CardGrid groups= {groups}/>
                 ) : (
                     <ClassView group={selectedRole} isClassView={true} />
                 )

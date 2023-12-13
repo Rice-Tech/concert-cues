@@ -1,8 +1,9 @@
 import Card from "./Card";
 
-const CardGrid = () => {
-    const groups = ["K", "1st", "2nd", "3rd", "4th", "5th", "Choir", "Glee"];
-
+interface Props {
+    groups: string[];
+}
+const CardGrid = ({ groups }: Props) => {
     return (
         <>
             <div className="container text-center">
