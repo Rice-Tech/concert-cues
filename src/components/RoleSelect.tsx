@@ -1,22 +1,19 @@
-import { ChangeEvent, useState } from "react";
-import CardGrid from "./CardGrid";
+import { ChangeEvent } from "react";
 
-import ClassView from "./ClassView";
 
-const RoleSelect = () => {
-    const [selectedRole, setSelectedRole] = useState("");
+interface Props {
+    onChange: (event: ChangeEvent<HTMLSelectElement>) => void;
+    groups: string[];
+}
 
-    const groups = ["K-1", "K-2", "1-1", "1-2", "2-1", "2-2", "3-1", "3-2", "4-1", "4-2", "5-1", "5-2", "Choir", "Glee"];
-    function handleSelectChange(event: ChangeEvent<HTMLSelectElement>) {
-        setSelectedRole(event.target.value);
-    }
+const RoleSelect = ({ onChange, groups }: Props) => {
     return (
         <>
             <select
                 className="form-select form-select-lg mb-3"
                 aria-label="Large select example"
                 defaultValue={""}
-                onChange={handleSelectChange}
+                onChange={onChange}
             >
                 <option value="">Select your class or role</option>
                 {groups.map((group) => (
@@ -26,15 +23,7 @@ const RoleSelect = () => {
                 ))}
                 <option value="Caller">Caller</option>
             </select>
-            {selectedRole ? (
-                selectedRole === "Caller" ? (
-                    <CardGrid groups= {groups}/>
-                ) : (
-                    <ClassView group={selectedRole} isClassView={true} />
-                )
-            ) : (
-                <></>
-            )}
+            
         </>
     );
 };
