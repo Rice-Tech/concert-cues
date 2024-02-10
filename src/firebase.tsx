@@ -10,13 +10,13 @@ import { GoogleAuthProvider } from "firebase/auth/cordova";
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 
 const firebaseConfig = {
-  apiKey: "AIzaSyBvpxraVF7O7KPCkAcqlr2-jDymsdGFWK8",
-  authDomain: "concert-cues.firebaseapp.com",
-  projectId: "concert-cues",
-  storageBucket: "concert-cues.appspot.com",
-  messagingSenderId: "390239510726",
-  appId: "1:390239510726:web:ca2250ed0da8aaa248b7c7",
-  measurementId: "G-VLW3CQFGX2",
+  apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
+  authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN,
+  projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID,
+  storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID,
+  appId: import.meta.env.VITE_FIREBASE_APP_ID,
+  measurementId: import.meta.env.VITE_FIREBASE_APP_MEASUREMENT_ID,
 };
 
 // Initialize Firebase
